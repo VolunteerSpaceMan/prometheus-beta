@@ -8,6 +8,9 @@ def reverse_words(input_string: str) -> str:
     Returns:
         str: A new string with words in reverse order, preserving original word spacing.
 
+    Raises:
+        TypeError: If input is not a string.
+
     Examples:
         >>> reverse_words("Hello World")
         'World Hello'
@@ -16,7 +19,11 @@ def reverse_words(input_string: str) -> str:
         >>> reverse_words("")
         ''
     """
-    # Handle empty or None input
+    # Explicit type checking
+    if not isinstance(input_string, str):
+        raise TypeError("Input must be a string")
+    
+    # Handle empty input
     if not input_string:
         return ""
     
