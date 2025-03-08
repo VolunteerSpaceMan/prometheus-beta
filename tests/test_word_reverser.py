@@ -23,7 +23,7 @@ def test_string_with_extra_spaces():
 
 def test_input_types():
     """Test that the function handles different input types gracefully."""
-    with pytest.raises(AttributeError):
+    with pytest.raises(TypeError):
         reverse_words(None)
-    with pytest.raises(AttributeError):
+    with pytest.raises(TypeError):
         reverse_words(123)
