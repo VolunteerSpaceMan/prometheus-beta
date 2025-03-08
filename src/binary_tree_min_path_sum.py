@@ -36,10 +36,13 @@ def find_min_path_sum(root):
     if root.left is None and root.right is None:
         return root.val
     
-    # Recursively find minimum path sum to a leaf in left and right subtrees
-    # If a side is None, use infinity to ensure the other side is chosen
-    left_min = (find_min_path_sum(root.left) if root.left else float('inf'))
-    right_min = (find_min_path_sum(root.right) if root.right else float('inf'))
+    # If only left child exists, go left
+    if root.left and root.right is None:
+        return root.val + find_min_path_sum(root.left)
     
-    # Return the node's value plus the minimum path sum to a leaf
-    return root.val + min(left_min, right_min)
+    # If only right child exists, go right
+    if root.right and root.left is None:
+        return root.val + find_min_path_sum(root.right)
+    
+    # If both children exist, choose the minimum path
+    return root.val + min(find_min_path_sum(root.left), find_min_path_sum(root.right))
