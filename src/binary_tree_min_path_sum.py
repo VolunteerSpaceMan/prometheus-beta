@@ -41,4 +41,5 @@ def find_min_path_sum(root):
     right_min = find_min_path_sum(root.right) if root.right else float('inf')
     
     # Return the minimum path sum including current node's value
+    # Only add the path if it leads to a leaf
     return root.val + min(left_min, right_min)
