@@ -36,7 +36,7 @@ def longest_common_substring(str1: str, str2: str) -> str:
     # Fill the dynamic programming table
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            # If characters match, extend the previous substring
+            # Case-sensitive exact match only
             if str1[i-1] == str2[j-1]:
                 dp[i][j] = dp[i-1][j-1] + 1
                 
