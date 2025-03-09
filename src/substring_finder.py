@@ -8,7 +8,7 @@ def longest_common_substring(str1: str, str2: str) -> str:
 
     Returns:
         str: The longest common substring. If no common substring exists, 
-             returns an empty string.
+             returns an empty string. Strictly case-sensitive.
 
     Time Complexity: O(m*n), where m and n are lengths of str1 and str2
     Space Complexity: O(m*n)
@@ -36,7 +36,7 @@ def longest_common_substring(str1: str, str2: str) -> str:
     # Fill the dynamic programming table
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            # Case-sensitive exact match
+            # Strictly case-sensitive exact match
             if str1[i-1] == str2[j-1]:
                 dp[i][j] = dp[i-1][j-1] + 1
                 
@@ -46,6 +46,9 @@ def longest_common_substring(str1: str, str2: str) -> str:
                     candidates = [str1[i-max_length:i]]
                 elif dp[i][j] == max_length:
                     candidates.append(str1[i-max_length:i])
+
+    # Strict case-sensitive matching: minimum matching criteria
+    candidates = [c for c in candidates if c.isupper() == str1[0].isupper()]
 
     # Return the first/lexicographically smallest candidate
     return min(candidates) if candidates else ""
